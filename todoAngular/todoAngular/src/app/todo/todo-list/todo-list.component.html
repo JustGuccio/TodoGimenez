@@ -1,0 +1,21 @@
+<button type="button" (click)="changeMode()">{{mode}}</button>
+<ng-container *ngIf="mode==='Create' then display else create"></ng-container>
+
+
+
+<ng-template #display>
+<div *ngFor="let todo of todos">
+  <li><a [href]= "'http://localhost:4200/todos/'+ todo.id">{{todo.contenu}}</a></li>
+</div>
+</ng-template>
+<ng-template #create>
+  <form (ngSubmit)="createTodo()">
+    <label for="id">ID :</label><input type="number" id="id" name="id">
+    <label for="contenu">Contenu :</label><input id="contenu" name="contenu">
+    <label for="dateCreation">Date Création</label><input type="date" id="dateCreation" name="dateCreation">
+    <label>Status :</label>
+    <input id="statutF" name="status" value="false" type="radio" checked><label for="statutF">Non Accomplie </label>
+    <input id="statutT" name="status" value="true" type="radio"><label for="statutT">Accomplie </label>
+    <button type="submit">Envoyer</button><button type="reset">Reset</button>
+  </form>
+</ng-template>

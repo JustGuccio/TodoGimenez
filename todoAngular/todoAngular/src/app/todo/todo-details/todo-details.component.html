@@ -1,0 +1,24 @@
+<button type="button" (click)="changeMode()">{{mode}}</button>
+<ng-container *ngIf="mode==='Edit' then display else edit"></ng-container>
+
+<button type="button" (click)="deleteTodo()">Delete</button>
+
+<ng-template #display>
+  <p>Id : {{todo.id}}</p>
+  <p>Contenu : {{todo.contenu}}</p>
+  <p>DateCreation : {{todo.dateCreation}}</p>
+  <p>Finis : {{todo.statut}}</p>
+</ng-template>
+<ng-template #edit>
+  <form (ngSubmit)="updateTodo()">
+    <p for="id">Id : </p>
+    <label for="contenu">Contenu :</label><input [(ngModel)]="todo.contenu" id="contenu" name="contenu">
+    <label>Status :</label>
+    <input id="statutF" name="status" value="false" type="radio" checked><label for="statutF">Non Accomplie </label>
+    <input id="statutT" name="status" value="true" type="radio"><label for="statutT">Accomplie </label>
+
+    <button type="submit">Envoyer</button><button type="reset">Reset</button>
+  </form>
+</ng-template>
+
+
